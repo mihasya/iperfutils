@@ -28,7 +28,7 @@ successes = 0
 while target['value'] > 0 and successes < opts.successes:
     popen_opts = ['iperf', '-c', opts.host, '-u', '-y', 'c', '-b', "%(value)d%(unit)s" % target ]
     (stdout, stderr) = subprocess.Popen(popen_opts, stdout=subprocess.PIPE).communicate()
-    client = stdout.strip().split("\n")[-1:]
+    client = stdout.strip().split("\n")[-1]
     client = client.split(',')
     if float(client[12]) > opts.maxloss:
         target['value'] -= opts.step
